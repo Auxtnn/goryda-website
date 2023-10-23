@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.hero{
+background: linear-gradient(180deg, #FFF 51.56%, rgba(217, 251, 240, 0.56) 100%);  
+flex-shrink: 0;
+}
+
+.drive{
+background: var(--10, rgba(25, 26, 26, 0.10));
+}
+
