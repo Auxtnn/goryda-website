@@ -29,11 +29,12 @@ const HeroSection = () => {
         <div className="md:w-1/2 relative md:mt-20 md:-mb-16">
           <Image
             src="/images/herocar.png"
-            alt="Counseling Image"
+            alt="car"
             width={600}
             quality={100}
             height={450}
             unoptimized
+            layout="responsive"
             className="max-w-full h-auto rounded-lg"
           />
         </div>
