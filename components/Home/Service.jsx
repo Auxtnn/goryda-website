@@ -18,7 +18,7 @@ const Service = () => {
   <ul className="mt-16 grid  md:px-10 md:gap-16 mx-6 grid-cols-1 gap-8 text-center md:grid-cols-3">
     <li className="rounded bg-white md:px-6 px-3 py-8 shadow-md bordertransition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp ">
 
-     <Image src={"/images/seat.png"} width={10} height={10} unoptimized className="mx-auto h-10 w-10  text-green-500" />
+     <Image src={"/images/seat.png"} width={10} height={10} alt="image" unoptimized className="mx-auto h-10 w-10  text-green-500" />
       <h3 className="my-3 font-display font-semibold">Ride</h3>
       <p className="mt-1.5 text-sm leading-6 text-secondary-500">
      Enjoy a stress-free booking and ride with us.

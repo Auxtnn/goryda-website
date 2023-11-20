@@ -58,7 +58,7 @@ const Download = () => {
           <div className="md:my-4 flex flex-col md:flex-row md:mx-0 mx-auto space-y-4 md:space-y-0 md:justify-start justify-center md:px-0 px-8">
           {/* <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start space-y-4 sm:space-y-0 sm:space-x-4 rtl:space-x-reverse"> */}
             <Link href="#" className="w-full md:mr-6 sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-              <Image className="me-3" src={"/images/andriod.png"} height={25} width={25} />
+              <Image className="me-3" src={"/images/andriod.png"} height={25} width={25} alt="image" />
               <div className="text-left rtl:text-right">
                 <div className="mb-1 text-xs sm:text-sm">Get it on</div>
                 <div className="mt-1 text-sm sm:text-base font-semibold">Google Play</div>

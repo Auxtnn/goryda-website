@@ -15,7 +15,7 @@ const HeroAbout = () => {
           </h2>
 
           <p className="text-lg text-gray-700 mb-6 mt-4 max-w-[480px] text-center md:text-justify">
-          At GoRyda, we're more than just a ride and delivery service – We're your partners in seamless journey and swift connections.
+          At GoRyda, we are more than just a ride and delivery service. We are your partners in seamless journey and swift connections.
           </p>
 
           <div className="grid items-center mt-5 md:inline md:mt-5">

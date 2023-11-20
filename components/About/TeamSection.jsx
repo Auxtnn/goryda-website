@@ -36,7 +36,7 @@ const TeamSection = () => {
           <h3 className="text-xl text-center md:text-left mb-6 lg:text-2xl font-bold leading-relaxed text-black-600">
           Who are we?
           </h3>
-        <p className="my-4">At GoRyda, we are a dedicated team committed to revolutionizing transportation and delivery services. Here's a glimpse into who we are:</p>   
+        <p className="my-4">At GoRyda, we are a dedicated team committed to revolutionizing transportation and delivery services. Here is a glimpse into who we are:</p>   
           <ul className="text-black-500 self-start list-inside ml-2">
         
         {featuresTeam.map((feature, index) => (
