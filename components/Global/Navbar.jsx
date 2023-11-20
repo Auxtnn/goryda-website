@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TfiClose } from "react-icons/tfi";
+import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,17 +41,18 @@ const Navbar = () => {
             <Link href="/">
               <Image
                 src="/images/goryda.png"
-                alt="VPN Illustration"
+                alt="image"
                 quality={100}
                 height={50}
                 width={120}
               />
             </Link>
           </div>
-          <div className="hidden md:flex items-center space-x-16 pr-10">
-            <Link href="/about" className="hover:text-green-500">
+          <div className="hidden md:flex items-center space-x-16 pr-2">
+            <Link href="/about" className="hover:text-green-500 ">
               About
             </Link>
+          
            
             <Link href="/#services" className="hover:text-green-500">
               Services
@@ -64,20 +66,20 @@ const Navbar = () => {
             </Link>
             <Link
               href="#"
-              className=" bg-green-500 text-white rounded py-2 px-4 hover:bg-green-600 "
+              className=" bg-green-500 text-white rounded py-3 px-4 hover:bg-green-600 "
             >
-              Get the app
+              Get the App
             </Link>
           </div>
           <div className="md:hidden">
             {isMobileMenuOpen ? (
-              <FaTimes
+              <TfiClose
                 className="text-2xl text-green-500 cursor-pointer"
                 onClick={toggleMobileMenu}
               />
             ) : (
-              <FaBars
-                className="text-2xl text-green-500 cursor-pointer"
+              <HiOutlineBars3BottomRight
+                className="text-3xl text-green-500 cursor-pointer"
                 onClick={toggleMobileMenu}
               />
             )}
@@ -124,10 +126,10 @@ const Navbar = () => {
                 </Link>
                 <Link
                   href="#"
-                  className="block mx-4 bg-green-500 text-white rounded py-2 px-4 hover-bg-transparent hover-border-green-700 border"
+                  className="block mx-4 bg-green-500 text-white rounded py-3 px-4 hover-bg-transparent hover-border-green-700 border"
                   onClick={closeMobileMenu}
                 >
-                  Book Ride
+                  Get the App
                 </Link>
               </div>
             </motion.div>

@@ -13,7 +13,7 @@ const DriverSection = () => {
     <section className="relative py-14">
       <div className="container mx-auto flex flex-col md:flex-row items-center w-full px-4 lg:w-11/12">
     <div className="flex w-full justify-end ">
-          <div className="h-full w-full px-4 pb-4">
+          <div className="h-full w-full px-2 pb-4">
             <Image
               src="/images/driver.png"
               alt="driver"

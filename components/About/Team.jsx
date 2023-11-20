@@ -1,46 +1,65 @@
-import React from "react";
-import TeamCard from "./TeamCard";
+"use client"
+import SingleTeam from "./TeamSingle";   
+import React, { useCallback, useRef } from "react";
+import "swiper/css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { GrLinkPrevious, GrLinkNext } from "react-icons/gr";
 
 const Team = () => {
-  return (
-    <section className="pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px] bg-gradient-to-r from-green-100 to-white">
-      <div className="container mx-auto">
-        <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4">
-            <div className="mx-auto mb-[60px] max-w-[510px] text-center">
-             
-              <h2 className=" text-2xl font-bold leading-[1.2] md:text-[2rem]">
-                Meet Our Team
-              </h2>
-           
-            </div>
-          </div>
-        </div>
+  const sliderRef = useRef(null);
 
-        <div className="-mx-4 flex flex-wrap justify-center">
-          <TeamCard
-            name="Vincent"
-            profession="Founder"
-            imageSrc="https://i.ibb.co/T1J9LD4/image-03-2.jpg"
-          />
-          <TeamCard
-            name="Ugobest"
-            profession="Co-Founder"
-            imageSrc="https://i.ibb.co/8P6cvVy/image-01-1.jpg"
-          />
-          <TeamCard
-            name="Victor"
-            profession="Business Developer"
-            imageSrc="https://i.ibb.co/30tGtjP/image-04.jpg"
-          />
-          <TeamCard
-            name="Victor"
-            profession="Business Developer"
-            imageSrc="https://i.ibb.co/yVVT0Dp/image-02-2.jpg"
-          />
+  const handlePrev = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slidePrev();
+  }, []);
+
+  const handleNext = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slideNext();
+  }, []);
+
+  return (
+    <>
+      <section className="pb-10 pt-20 lg:pb-20 lg:pt-[120px] bg-gradient-to-r from-green-100 to-white">
+      <h2 className="text-center text-dark mb-10 font-display text-2xl font-bold tracking-tight md:text-[2rem]">
+            Meet Our Team
+           </h2>
+        <div className="container mx-auto">
+   
+          <Swiper slidesPerView={1} ref={sliderRef}>
+            <SwiperSlide>
+              <SingleTeam
+                image="/images/CEO.png"
+               
+                details="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur placeat reprehenderit voluptatem!"
+                name="Vincent Ugobest"
+                position="Founder"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <SingleTeam
+                image="/images/CEO.png"
+                details="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur placeat reprehenderit voluptatem!"
+                name="Victor"
+                position="Business Developer"
+              />
+            </SwiperSlide>
+            <div className="absolute left-0 right-0 z-10 flex items-center justify-center gap-5 sm:bottom-0">
+              <div className="cursor-pointer" onClick={handlePrev}>
+                <button className="d flex h-[40px] w-[40px] items-center justify-center rounded-full border border-stroke bg-white transition-all hover:border-transparent hover:drop-shadow-testimonial">
+                <GrLinkPrevious />
+                </button>
+              </div>
+              <div className="next-arrow cursor-pointer" onClick={handleNext}>
+                <button className="d flex h-[40px] w-[40px] items-center justify-center rounded-full border border-stroke bg-white transition-all hover:border-transparent hover:drop-shadow-testimonial">
+                <GrLinkNext className="text-green-500" />
+                </button>
+              </div>
+            </div>
+          </Swiper>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
