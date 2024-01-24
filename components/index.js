@@ -12,6 +12,14 @@ import TeamSection from "./About/TeamSection";
 import Value from "./About/Value";
 import Team from "./About/Team";
 import Navbar from "./Global/Navbar";
+import Login from "./Auth/Login";
+import Sidebar from "./dashboard/Sidebar";
+import Clients from "./dashboard/Clients";
+import Dashboard from "./dashboard/Dashboard";
+import Drivers from "./dashboard/Drivers";
+import Orders from "./dashboard/Orders";
+import Rides from "./dashboard/Rides";
+import Shift from "./dashboard/Shift";
 
 export {
   Navbar,
@@ -28,4 +36,12 @@ export {
   Value,
   TeamSection,
   Team,
+  Login,
+  Sidebar,
+  Clients,
+  Dashboard,
+  Drivers,
+  Orders,
+  Rides,
+  Shift
 };
