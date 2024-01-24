@@ -1,8 +1,8 @@
 import React from 'react'
-import { Login } from '@/components'
+import { Login  } from '@/components'
 
 
-const Login = () => {
+const Page = () => {
   return (
     <>
       <Login />
@@ -10,4 +10,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Page

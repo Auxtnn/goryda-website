@@ -36,7 +36,7 @@ export {
   Value,
   TeamSection,
   Team,
-  Login,
+  Login as Login,
   Sidebar,
   Clients,
   Dashboard,
