@@ -1,5 +1,5 @@
-"use client"
-import SingleTeam from "./TeamSingle";   
+"use client";
+import SingleTeam from "./TeamSingle";
 import React, { useCallback, useRef } from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,16 +21,14 @@ const Team = () => {
   return (
     <>
       <section className="pb-10 pt-20 lg:pb-20 lg:pt-[120px] bg-gradient-to-r from-green-100 to-white">
-      <h2 className="text-center text-dark mb-10 font-display text-2xl font-bold tracking-tight md:text-[2rem]">
-            Meet Our Team
-           </h2>
+        <h2 className="text-center text-dark mb-10 font-display text-2xl font-bold tracking-tight md:text-[2rem]">
+          Meet Our Team
+        </h2>
         <div className="container mx-auto">
-   
           <Swiper slidesPerView={1} ref={sliderRef}>
             <SwiperSlide>
               <SingleTeam
-                image="/images/CEO.png"
-               
+                image="/images/ceo.jpg"
                 details="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur placeat reprehenderit voluptatem!"
                 name="Vincent Ugobest"
                 position="Founder"
@@ -46,13 +44,13 @@ const Team = () => {
             </SwiperSlide>
             <div className="absolute left-0 right-0 z-10 flex items-center justify-center gap-5 sm:bottom-0">
               <div className="cursor-pointer" onClick={handlePrev}>
-                <button className="d flex h-[40px] w-[40px] items-center justify-center rounded-full border border-stroke bg-white transition-all hover:border-transparent hover:drop-shadow-testimonial">
-                <GrLinkPrevious />
+                <button className="d flex h-[40px] w-[40px] items-center justify-center rounded-full border border-stroke bg-white transition-all hover:border-green-500 hover:drop-shadow-testimonial">
+                  <GrLinkPrevious />
                 </button>
               </div>
               <div className="next-arrow cursor-pointer" onClick={handleNext}>
-                <button className="d flex h-[40px] w-[40px] items-center justify-center rounded-full border border-stroke bg-white transition-all hover:border-transparent hover:drop-shadow-testimonial">
-                <GrLinkNext className="text-green-500" />
+                <button className="d flex h-[40px] w-[40px] items-center justify-center rounded-full border border-stroke bg-white transition-all hover:border-green-500 hover:drop-shadow-testimonial">
+                  <GrLinkNext className="text-green-500" />
                 </button>
               </div>
             </div>
@@ -64,5 +62,3 @@ const Team = () => {
 };
 
 export default Team;
-
-

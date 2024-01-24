@@ -1,22 +1,16 @@
-
-import Navbar from "@/components/Global/Navbar"
-import FAQ from "@/components/Global/Faq"
-import Footer from "@/components/Global/Footer"
-import Support from "@/components/Support/Support"
-
+import React from "react";
+import { Support, Navbar, Faq, Footer } from "@/components";
 
 export default function About() {
   return (
-  <div>
-     <Navbar />
+    <div>
+      <Navbar />
 
-     <Support />
+      <Support />
 
-     <FAQ />
-     
-     <Footer />
-  </div>
-  )
+      <Faq />
+
+      <Footer />
+    </div>
+  );
 }
-
-
