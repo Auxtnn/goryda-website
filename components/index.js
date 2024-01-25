@@ -20,7 +20,7 @@ import Drivers from "./dashboard/Drivers";
 import Orders from "./dashboard/Orders";
 import Rides from "./dashboard/Rides";
 import Shift from "./dashboard/Shift";
-
+import Settings from "./dashboard/Settings";
 export {
   Navbar,
   Download,
@@ -36,12 +36,13 @@ export {
   Value,
   TeamSection,
   Team,
-  Login as Login,
+  Login,
   Sidebar,
   Clients,
   Dashboard,
   Drivers,
   Orders,
   Rides,
-  Shift
+  Shift,
+  Settings
 };
