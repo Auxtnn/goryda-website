@@ -26,8 +26,8 @@ const AdminDashboard = () => {
         <aside className="w-[15%] h-screen">
           <Sidebar selectedTab={selectedTab} onTabClick={handleTabClick} />
         </aside>
-        <div className="w-11/12 bg-gray-900 py-4 px-4">
-          <div className="bg-white h-full rounded-xl">
+        <div className="w-11/12 bg-gray-900 py-4 px-4  border-none">
+          <div className="bg-white h-full rounded-xl relative">
             {selectedTab === "Dashboard" && <Dashboard />}
             {selectedTab === "Orders" && <Orders />}
             {selectedTab === "Rides" && <Rides />}
