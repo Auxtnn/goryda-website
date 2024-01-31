@@ -30,7 +30,7 @@ const Sidebar = ({ selectedTab, onTabClick }) => {
           <div
             key={item.key}
             className={`cursor-pointer font-[600] flex gap-[1.12rem] items-center text-white pl-3${
-              selectedTab === item.title ? "font-bold text-[#5459EA] bg-white py-3 pl-3 rounded-3xl" : ""
+              selectedTab === item.title ? "font-bold  text-green-600  bg-white py-3 pl-3 rounded-3xl" : ""
             }`}
             onClick={() => onTabClick(item.title)}
           >
