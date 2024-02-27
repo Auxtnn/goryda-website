@@ -1,38 +1,79 @@
- @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
- 
-
-
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
-body{
-  font-family: 'Poppins', sans-serif;
+body {
+  font-family: "Poppins", sans-serif;
 }
 
-
-  
-
-.hero{
-background: linear-gradient(180deg, #FFF 51.56%, rgba(217, 251, 240, 0.56) 100%);  
-flex-shrink: 0;
+.hero {
+  background: linear-gradient(
+    180deg,
+    #fff 51.56%,
+    rgba(217, 251, 240, 0.56) 100%
+  );
+  flex-shrink: 0;
 }
 
-.drive{
-background: var(--10, rgba(25, 26, 26, 0.10));
+.drive {
+  background: var(--10, rgba(25, 26, 26, 0.1));
 }
 
-.link{
+.link {
   margin: 0 auto;
 }
 
+.navigation {
+  @apply fixed h-screen w-[19.75rem] bg-gray-900   border-l-[10px] border-l-gray-900 border-solid py-3 mr-0;
+  /* transition-[width] duration-[0.5s] */
+}
 
+.normalSize {
+  @apply w-[18.75rem];
+}
+.width {
+  @apply w-[5rem];
+}
 
+.sidebarWidth {
+  @apply w-[4rem];
+}
 
+/* .navigation:hover {
+  width: 300px;
+} */
+.navigation ul {
+  @apply absolute w-full pl-[5px] pt-10 left-0 top-0;
+}
+.navigation ul li {
+  @apply relative w-full rounded-tl-[30px] rounded-bl-[30px] list-none;
+}
+.navigation ul li.active {
+  @apply bg-white;
+}
+.navigation ul li.active p::before {
+  @apply content-[""] absolute top-[-40px] w-[40px] h-[40px] bg-gray-900 shadow-[15px_15px_0_#fff] rounded-[50%] right-0;
+}
+.navigation ul li.active p::after {
+  @apply content-[""] absolute bottom-[-40px] w-[40px] h-[40px] bg-gray-900 shadow-[15px_-15px_0_#fff] rounded-[50%] right-0;
+}
+.navigation ul li p {
+  @apply relative w-full flex items-center no-underline cursor-pointer text-white;
+}
+.navigation ul li.active p {
+  @apply text-blue-900;
+}
+.icon {
+  @apply relative block min-w-[60px] leading-[60px] text-center text-2xl z-[1];
+}
+.navigation ul li p .title {
+  @apply relative block h-[60px] leading-[60px] whitespace-nowrap pl-2.5;
+}
 
-
-
+.no-scrollbar::-webkit-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none;
+}

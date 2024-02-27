@@ -1,9 +1,15 @@
-import React from 'react'
+import Table from "./pageDashboard/Table";
+import StepHeader from "./rides/StepHeader";
 
 const Rides = () => {
   return (
-    <div>Rides</div>
-  )
-}
+    <div className="p-4">
+      <StepHeader />
+      <div className="mt-6">
+        <Table />
+      </div>
+    </div>
+  );
+};
 
-export default Rides
+export default Rides;

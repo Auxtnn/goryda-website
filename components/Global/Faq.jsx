@@ -19,7 +19,7 @@ const Faq = () => {
         <section id="faq" className="flex flex-col justify-center items-center mx-auto">
         <div
           className="bg-white w-4/5 pb-8 pt-10 rounded-lg flex justify-between flex-col md:flex-row">
-          <div class="md:w-4/6 w-full my-10 md:mr-20">
+          <div className="md:w-4/6 w-full my-10 md:mr-20">
            
           <h1 className="text-2xl md:text-3xl font-bold mb-2 text-blue text-center md:text-left">
             Frequently Asked <span className="md:block">Questions</span>

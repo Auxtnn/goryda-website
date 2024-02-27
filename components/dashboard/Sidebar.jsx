@@ -1,49 +1,86 @@
-import Image from "next/image";
 import React from "react";
-import { MdDashboard, MdMenuBook, MdLocalCarWash } from "react-icons/md";
+import {
+  MdDashboard,
+  MdMenuBook,
+  MdLocalCarWash,
+  MdAddModerator,
+  MdOutlineSettings,
+  MdApartment,
+} from "react-icons/md";
 import { FaUsers, FaRegUser } from "react-icons/fa6";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
-import { MdOutlineSettings } from "react-icons/md";
 
-const Sidebar = ({ selectedTab, onTabClick }) => {
+import { TbBrand4Chan } from "react-icons/tb";
+import { BiCar } from "react-icons/bi";
+
+const Sidebar = ({ selectedTab, onTabClick, toggleSidebar }) => {
   const navLinks = [
-    { title: "Dashboard", icon: <MdDashboard />, key: 1 },
-    { title: "Orders", icon: <MdMenuBook />, key: 2 },
-    { title: "Rides", icon: <MdLocalCarWash />, key: 3 },
-    { title: "Clients", icon: <FaUsers />, key: 4 },
-    { title: "Drivers", icon: <FaRegUser />, key: 5 },
-    { title: "Shift", icon: <RiMoneyDollarCircleFill />, key: 6 },
-    { title: "Settings", icon: <MdOutlineSettings />, key: 7 },
+    { title: "Dashboard", icon: <MdDashboard className="icon" />, key: 1 },
+    { title: "Orders", icon: <MdMenuBook className="icon" />, key: 2 },
+    { title: "Rides", icon: <MdLocalCarWash className="icon" />, key: 3 },
+    { title: "Clients", icon: <FaUsers className="icon" />, key: 4 },
+    { title: "Drivers", icon: <FaRegUser className="icon" />, key: 5 },
+    {
+      title: "Shift",
+      icon: <RiMoneyDollarCircleFill className="icon" />,
+      key: 6,
+    },
+    {
+      title: "LiveMap",
+      icon: <MdApartment className="icon" />,
+      key: 7,
+    },
+    {
+      title: "CarClasses",
+      icon: <BiCar className="icon" />,
+      key: 8,
+    },
+    {
+      title: "Branches",
+      icon: <TbBrand4Chan className="icon" />,
+      key: 9,
+    },
+    {
+      title: "Moderators",
+      icon: <MdAddModerator className="icon" />,
+      key: 10,
+    },
+    {
+      title: "Settings",
+      icon: <MdOutlineSettings className="icon" />,
+      key: 11,
+    },
   ];
 
   return (
-    <aside className="bg-gray-900 text-white h-screen w-[13rem] fixed top-0 overflow-y-auto pt-10 pl-2">
-      <div className= 'ml-4 flex items-center gap-3 mb-12'>
-        <div className="flex border-4 rounded-full w-12 h-12 bg-black items-center justify-center">
-          <FaRegUser className="text-white w-8 h-8"/>
+    <aside className={toggleSidebar ? "navigation" : "navigation width"}>
+      <div className="flex mb-10 w-[100%]">
+        <div className="flex mb-4 p-4 gap-4 items-center">
+          <span className="">
+            <FaRegUser className="text-white w-10 p-[2px] h-10 border-2 border-solid border-white rounded-full" />
+          </span>
+          <p className={toggleSidebar ? "" : "hidden"}>
+            <span className="block text-white">Brand Name</span>
+            <span className="block text-gray-200 text-[10px]">
+              +234-07068482163
+            </span>
+          </p>
         </div>
-        <h3>Admin</h3>
       </div>
-      <h1 className="text-lg font-bold ml-4 text-white text-opacity-60">Main Menu</h1>
-      <div className="flex flex-col gap-5 ml-4 pt-6">
+      <ul className="mt-20">
         {navLinks.map((item) => (
-          <div
+          <li
             key={item.key}
-            className={`cursor-pointer font-[600] flex gap-[1.12rem] items-center text-white pl-3${
-              selectedTab === item.title ? "font-bold  text-green-600  bg-white py-3 pl-3 rounded-3xl" : ""
-            }`}
+            className={`list ${selectedTab === item.title ? "active" : ""}`}
             onClick={() => onTabClick(item.title)}
           >
-            <div className=" w-[1.25rem] h-[1.25rem]">
-              {item.icon}
-            </div>
-            <p className="">
-             {item.title} 
+            <p>
+              <span className="icon">{item.icon}</span>
+              <span className="title">{item.title}</span>
             </p>
-            
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </aside>
   );
 };
