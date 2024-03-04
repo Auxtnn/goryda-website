@@ -2,14 +2,16 @@ import { drivers } from "./index.js";
 import { useState } from "react";
 import {
   createColumnHelper,
-  flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import ReuseTable from "../ReuseTable.jsx";
 
-function FirstTable({ handleRowClick }) {
+import RenderTable from "../RenderTable.jsx";
+import SearchHeader from "../SearchHeader.jsx";
+
+function FirstTable({ setSelectedDriver }) {
   const [data, setData] = useState(() => [...drivers]);
   const [checkAll, setCheckAll] = useState(false);
   const [checkboxes, setCheckboxes] = useState(
@@ -48,24 +50,22 @@ function FirstTable({ handleRowClick }) {
 
     columnHelper.accessor("firstName", {
       cell: (info) => (
-        <p className=" flex gap-3 items-center" onClick={handleRowClick}>
-          {info?.getValue()}
-        </p>
+        <p className=" flex gap-3 items-center">{info?.getValue()}</p>
       ),
       header: "First Name",
     }),
 
     columnHelper.accessor("lastName", {
-      cell: (info) => <span onClick={handleRowClick}>{info.getValue()}</span>,
+      cell: (info) => <span>{info.getValue()}</span>,
       header: "Last Name",
     }),
     columnHelper.accessor("birthday", {
-      cell: (info) => <span onClick={handleRowClick}>{info.getValue()}</span>,
+      cell: (info) => <span>{info.getValue()}</span>,
       header: "Birthday",
     }),
 
     columnHelper.accessor("state", {
-      cell: (info) => <span onClick={handleRowClick}>{info.getValue()}</span>,
+      cell: (info) => <span>{info.getValue()}</span>,
       header: "State",
     }),
     columnHelper.accessor("homeLocation", {
@@ -78,10 +78,16 @@ function FirstTable({ handleRowClick }) {
     }),
   ];
 
+  const [globalFilter, setGlobalFilter] = useState("");
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+
+    state: {
+      globalFilter,
+    },
+    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       pagination: {
@@ -89,7 +95,12 @@ function FirstTable({ handleRowClick }) {
       },
     },
   });
-  return <ReuseTable data={data} columns={columns} />;
+  return (
+    <>
+      <SearchHeader setGlobalFilter={setGlobalFilter} />
+      <RenderTable table={table} setSelectedDriver={setSelectedDriver} />;
+    </>
+  );
 }
 
 export default FirstTable;

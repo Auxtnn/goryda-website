@@ -3,18 +3,23 @@ import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
-const ReuseTable = ({ columns, data, handleRowClick }) => {
+const ReuseTable = ({ columns, data }) => {
   const columnHelper = createColumnHelper();
-
+  const [globalFilter, setGlobalFilter] = useState("");
   const [tableData, setTableData] = useState(() => [...data]);
   const table = useReactTable({
-    data: tableData,
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+
+    state: {
+      globalFilter,
+    },
+    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       pagination: {
@@ -25,7 +30,6 @@ const ReuseTable = ({ columns, data, handleRowClick }) => {
 
   return (
     <div className="p-2 text-black">
-      <div>Search Bar</div>
       <table className="border-none text-left w-full">
         <thead className="bg-gray-50">
           {table.getHeaderGroups().map((headerGroup) => (

@@ -2,20 +2,43 @@ import React, { useState } from "react";
 import { USERS } from "@/components";
 import {
   createColumnHelper,
-  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { FiSearch } from "react-icons/fi";
-import ReuseTable from "../ReuseTable";
+
+import RenderTable from "../RenderTable";
+import SearchHeader from "../SearchHeader";
 
 const Table = () => {
   const columnHelper = createColumnHelper();
-  const [data, setData] = useState(() => [...USERS]);
+  const [selectAll, setSelectAll] = useState(false);
+  const [editingRow, setEditingRow] = useState(null);
+
+  const handleEdit = (row) => {
+    setEditingRow(row);
+  };
+
+  const handleDelete = (row) => {
+    setData((old) => old.filter((data) => data.id !== row.id));
+  };
+
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    const updatedRow = {
+      ...editingRow,
+      firstName: event.target.firstName.value,
+      lastName: event.target.lastName.value,
+    };
+    setData((old) =>
+      old.map((row) => (row.id === updatedRow.id ? updatedRow : row))
+    );
+    setEditingRow(null); // Clear the form
+  };
+
   const [checkAll, setCheckAll] = useState(false);
-  const [checkboxes, setCheckboxes] = useState(Array(data.length).fill(false));
+  const [checkboxes, setCheckboxes] = useState(Array(USERS.length).fill(false));
 
   // Handler for the "check all" checkbox
   const handleCheckAll = () => {
@@ -96,6 +119,7 @@ const Table = () => {
   ];
   const [globalFilter, setGlobalFilter] = useState("");
 
+  const [data, setData] = useState(() => [...USERS]);
   const table = useReactTable({
     data,
     columns,
@@ -115,26 +139,9 @@ const Table = () => {
 
   return (
     <div className="p-2 text-black">
-      '
-      <div>
-        <div className="flex items-center gap-10 p-4 ">
-          <h1 className="text-2xl text-black">Drivers List</h1>
-          <div className="relative">
-            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-              <FiSearch className="h-5 w-5 text-gray-400" />
-            </div>
-            <input
-              className="pl-10 pr-4 shadow-xl rounded-full border border-gray-100 outline-none py-3  text-gray-700 placeholder-gray-500"
-              type="text"
-              placeholder="Search by name"
-              onChange={(e) => setGlobalFilter(e.target.value)}
-            />
-          </div>
-        </div>
-      </div>
-      '
-      <div>
-        <ReuseTable data={data} columns={columns} />
+      <SearchHeader setGlobalFilter={setGlobalFilter} />
+      <div className="mt-4">
+        <RenderTable table={table} />
       </div>
     </div>
   );
