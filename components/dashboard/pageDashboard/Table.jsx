@@ -11,13 +11,36 @@ import {
 } from "@tanstack/react-table";
 
 const Table = () => {
+  const [checkAll, setCheckAll] = useState(false);
+  const [checkboxes, setCheckboxes] = useState(Array(USERS.length).fill(false));
+
+  // Handler for the "check all" checkbox
+  const handleCheckAll = () => {
+    setCheckAll(!checkAll);
+    setCheckboxes(checkboxes.map(() => !checkAll));
+  };
+
+  // Handler for individual checkboxes
+  const handleCheckboxChange = (index) => {
+    const updatedCheckboxes = [...checkboxes];
+    updatedCheckboxes[index] = !updatedCheckboxes[index];
+    setCheckboxes(updatedCheckboxes);
+  };
   const columnHelper = createColumnHelper();
 
   const columns = [
-    columnHelper.accessor("", {
+    columnHelper.accessor("id", {
       id: "S.no",
-      cell: () => <input type="checkbox" />,
-      header: <input type="checkbox" />,
+      cell: (info) => (
+        <input
+          type="checkbox"
+          checked={checkboxes[info.getValue()]}
+          onChange={() => handleCheckboxChange(info.getValue())}
+        />
+      ),
+      header: (
+        <input type="checkbox" checked={checkAll} onChange={handleCheckAll} />
+      ),
     }),
 
     columnHelper.accessor("profile", {

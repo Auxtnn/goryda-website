@@ -7,7 +7,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-const ReuseTable = ({ columns, data }) => {
+const ReuseTable = ({ columns, data, handleRowClick }) => {
   const columnHelper = createColumnHelper();
 
   const [tableData, setTableData] = useState(() => [...data]);
@@ -49,7 +49,7 @@ const ReuseTable = ({ columns, data }) => {
               className={`${i % 2 === 0 ? "bg-white" : "bg-gray-50/[0.2]"}`}
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-3.5 py-2">
+                <td key={cell.id} className="px-3.5 py-2 cursor-pointer">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

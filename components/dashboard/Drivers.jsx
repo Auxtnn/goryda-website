@@ -105,7 +105,7 @@ const Drivers = () => {
                 />
                 <div>
                   <div className="flex gap-10">
-                    <p> Birthday: </p> <p>{selectedDriver.original.birthday}</p>
+                    <p> Birthday: </p> <p>{1995}</p>
                   </div>
                   <div className="flex gap-10">
                     <p>State: </p>

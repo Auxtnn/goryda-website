@@ -9,46 +9,39 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { FiSearch } from "react-icons/fi";
+import ReuseTable from "../ReuseTable";
 
 const Table = () => {
   const columnHelper = createColumnHelper();
-  const [selectAll, setSelectAll] = useState(false);
-  const [editingRow, setEditingRow] = useState(null);
+  const [data, setData] = useState(() => [...USERS]);
+  const [checkAll, setCheckAll] = useState(false);
+  const [checkboxes, setCheckboxes] = useState(Array(data.length).fill(false));
 
-  const handleEdit = (row) => {
-    setEditingRow(row);
+  // Handler for the "check all" checkbox
+  const handleCheckAll = () => {
+    setCheckAll(!checkAll);
+    setCheckboxes(checkboxes.map(() => !checkAll));
   };
 
-  const handleDelete = (row) => {
-    setData((old) => old.filter((data) => data.id !== row.id));
-  };
-
-  const handleUpdate = (event) => {
-    event.preventDefault();
-    const updatedRow = {
-      ...editingRow,
-      firstName: event.target.firstName.value,
-      lastName: event.target.lastName.value,
-    };
-    setData((old) =>
-      old.map((row) => (row.id === updatedRow.id ? updatedRow : row))
-    );
-    setEditingRow(null); // Clear the form
+  // Handler for individual checkboxes
+  const handleCheckboxChange = (index) => {
+    const updatedCheckboxes = [...checkboxes];
+    updatedCheckboxes[index] = !updatedCheckboxes[index];
+    setCheckboxes(updatedCheckboxes);
   };
 
   const columns = [
-    columnHelper.accessor("", {
+    columnHelper.accessor("id", {
       id: "S.no",
-      cell: () => (
-        <input type="checkbox" checked={selectAll} defaultChecked={selectAll} />
-      ),
-      header: (
+      cell: (info) => (
         <input
           type="checkbox"
-          checked={selectAll}
-          defaultChecked={selectAll}
-          onChange={() => setSelectAll(!selectAll)}
+          checked={checkboxes[info.getValue()]}
+          onChange={() => handleCheckboxChange(info.getValue())}
         />
+      ),
+      header: (
+        <input type="checkbox" checked={checkAll} onChange={handleCheckAll} />
       ),
     }),
 
@@ -103,7 +96,6 @@ const Table = () => {
   ];
   const [globalFilter, setGlobalFilter] = useState("");
 
-  const [data, setData] = useState(() => [...USERS]);
   const table = useReactTable({
     data,
     columns,
@@ -141,96 +133,9 @@ const Table = () => {
         </div>
       </div>
       '
-      <table className="border-none text-left w-full">
-        <thead className="bg-gray-50">
-          {table.getHeaderGroups().map((headerGroup) => {
-            return (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <th key={header.id} className="capitalize p-4">
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                    </th>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </thead>
-
-        <tbody>
-          {table.getRowModel().rows.length
-            ? table.getRowModel().rows.map((row, i) => (
-                <tr
-                  key={i}
-                  className={`${i % 2 === 0 ? "bg-white" : "bg-gray-50/[0.2]"}`}
-                >
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <td key={cell.id} className="px-3.5 py-2">
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))
-            : null}
-        </tbody>
-      </table>
-      {/* pagination  */}
-      <div className="flex items-center justify-end mt-2 gap-2 text-black">
-        <span className="flex items-center gap-1">
-          <strong>
-            {table.getState().pagination.pageIndex + 1} of{" "}
-            {table.getPageCount()}
-          </strong>
-          <div>Items</div>
-        </span>
-
-        <button
-          onClick={() => {
-            table.previousPage();
-          }}
-          disabled={!table.getCanPreviousPage()}
-          className="p-1 border border-gray-800 font-bold px-2 text-gray-900 disabled:opacity-30 "
-        >
-          {"<"}
-        </button>
-        {table.getState().pagination.pageIndex === 0 ? (
-          ""
-        ) : (
-          <span className="bg-gray-100 text-black px-3 py-2">
-            {table.getState().pagination.pageIndex}
-          </span>
-        )}
-        <span className="bg-blue-600 text-white px-3 py-2">
-          {" "}
-          {table.getState().pagination.pageIndex + 1}
-        </span>
-        <button
-          onClick={() => {
-            table.nextPage();
-          }}
-          disabled={!table.getCanNextPage()}
-          className="p-1 border border-gray-800 px-2 disabled:opacity-30 text-gray-900 font-bold "
-        >
-          {">"}
-        </button>
+      <div>
+        <ReuseTable data={data} columns={columns} />
       </div>
-      {editingRow && (
-        <form onSubmit={handleUpdate}>
-          <input name="firstName" defaultValue={editingRow.firstName} />
-          <input name="lastName" defaultValue={editingRow.lastName} />
-          {/* Add more fields as needed */}
-          <button type="submit">Update</button>
-        </form>
-      )}
     </div>
   );
 };
