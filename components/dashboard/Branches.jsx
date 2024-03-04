@@ -2,9 +2,15 @@ import { useState, useRef } from "react";
 import { Data } from "../index.js";
 import { createColumnHelper } from "@tanstack/react-table";
 import ReuseTable from "./ReuseTable";
+import { MdDelete } from "react-icons/md";
+import { FaPen } from "react-icons/fa";
 
 const CarClasses = () => {
   const fileInputRef = useRef(null);
+  const handleDelete = (e, row) => {
+    e.preventDefault();
+    setData((old) => old.filter((data) => data.id !== row.id));
+  };
 
   const handleImageClick = () => {
     fileInputRef.current.click();
@@ -33,14 +39,18 @@ const CarClasses = () => {
       header: "Free Km",
     }),
 
-    columnHelper.accessor("", {
+    columnHelper.accessor("id", {
       cell: (info) => (
-        <div className="flex gap-5 text-2xl">
-          <button>🖊</button>
-          <button>♻</button>
+        <div className="flex gap-4">
+          <button className="text-2xl">
+            <FaPen />
+          </button>
+          <button onClick={(e) => handleDelete(e, info.row.original)}>
+            <MdDelete className="text-2xl" />
+          </button>
         </div>
       ),
-      header: "Actions",
+      header: "",
     }),
   ];
   const [data, setData] = useState([...Data]);
@@ -48,7 +58,7 @@ const CarClasses = () => {
   return (
     <div className="p-4">
       <div className="flex px-10 justify-between">
-        <p className="font-semibold text-2xl">Car Classes List</p>
+        <p className="font-semibold text-2xl">Branches</p>
         <button
           className="bg-blue-600 text-white font-semibold border-none outline-none px-4 py-2.5 rounded-md"
           onClick={() => setAddNewUser(!addNewUser)}
