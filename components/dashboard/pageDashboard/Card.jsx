@@ -1,11 +1,13 @@
 const Card = ({ icon1, icon2, text, bg, color }) => {
   return (
     <div
-      className={`${bg} ${color} shadow-lg rounded-lg py-8 px-2 m-2 flex gap-3  items-center justify-between`}
+      className={`relative ${bg}  shadow-xl p-[30px] flex rounded-lg justify-between items-center cursor-pointer  ">
+          gap-2`}
     >
-      <div className="text-2xl text-blue-500">{icon1}</div>
-      <div className={`text-${bg} font-bold text-[14px] `}>{text}</div>
-      <div className="text-xl text-green-500">{icon2}</div>
+      <div className="icon1"> {icon1} </div>
+
+      <div className={`relative font-bold text-[12px] ${color}`}> {text}</div>
+      <div className="icon2">{icon2}</div>
     </div>
   );
 };

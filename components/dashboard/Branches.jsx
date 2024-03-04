@@ -20,7 +20,7 @@ const CarClasses = () => {
   const columns = [
     columnHelper.accessor("id", {
       id: "S.no",
-      cell: (info) => <p>{info.getValue()}</p>,
+      cell: (info) => <p>{info.getValue() + 1}</p>,
       header: "S/N",
     }),
 

@@ -29,52 +29,44 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <main className="flex w-full bg-gray-900">
-        <aside
-          className={` ${
-            toggleSidebar ? " h-screen normalSize" : " h-screen sidebarWidth"
-          }`}
-        >
+      <main className="w-full relative min-h-screen bg-gray-900 py-6  overflow-x-hidden">
+        <div>
           <Sidebar
             selectedTab={selectedTab}
             toggleSidebar={toggleSidebar}
             onTabClick={handleTabClick}
           />
-        </aside>
+        </div>
 
-        <div
-          className={`py-4 px-4  border-none ml-0 z-10`}
-          style={{
-            width: `calc(100% - ${toggleSidebar ? "18.75rem" : "4.5rem"})`,
-          }}
+        <main
+          className={`absolute min-h-screen  transition-[width left] duration-500 p-3 bg-white rounded-2xl ${
+            !toggleSidebar
+              ? "w-[calc(99%_-_294px)] left-[294px]"
+              : "w-[calc(99%_-_80px)] left-[80px]"
+          }  `}
         >
-          <div
-            className={`bg-white h-full px-10 py-6 rounded-xl relative ${
-              !toggleSidebar && selectedTab === "Rides" ? "ml-[0.4rem] " : ""
-            }`}
-          >
-            <Header
-              settoggleSidebar={settoggleSidebar}
-              toggleSidebar={toggleSidebar}
-            />
+          <div className={`py-4 px-4  border-none ml-0 z-10`}>
             <div>
-              {selectedTab === "Dashboard" && <Dashboard />}
-              {selectedTab === "Orders" && <Orders />}
-              {selectedTab === "Rides" && <Rides />}
-              {selectedTab === "Clients" && <Clients />}
-              {selectedTab === "Drivers" && <Drivers />}
-              {selectedTab === "Shift" && <Shift />}
-              {selectedTab === "LiveMap" && <LiveMap />}
-              {selectedTab === "CarClasses" && <CarClasses />}
-              {selectedTab === "Branches" && <Branches />}
-              {selectedTab === "Moderators" && <Moderators />}
-              {selectedTab === "Settings" && <Settings />}
+              <Header
+                settoggleSidebar={settoggleSidebar}
+                toggleSidebar={toggleSidebar}
+              />
+              <div>
+                {selectedTab === "Dashboard" && <Dashboard />}
+                {selectedTab === "Orders" && <Orders />}
+                {selectedTab === "Rides" && <Rides />}
+                {selectedTab === "Clients" && <Clients />}
+                {selectedTab === "Drivers" && <Drivers />}
+                {selectedTab === "Shift" && <Shift />}
+                {selectedTab === "LiveMap" && <LiveMap />}
+                {selectedTab === "CarClasses" && <CarClasses />}
+                {selectedTab === "Branches" && <Branches />}
+                {selectedTab === "Moderators" && <Moderators />}
+                {selectedTab === "Settings" && <Settings />}
+              </div>
             </div>
           </div>
-        </div>
-        {selectedTab === "Rides" && !toggleSidebar && (
-          <div className="h-screen bg-white w-[200px]">Hello</div>
-        )}
+        </main>
       </main>
     </>
   );
