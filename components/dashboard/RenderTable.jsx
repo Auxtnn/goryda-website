@@ -37,10 +37,7 @@ function RenderTable({ table, setSelectedDriver }) {
                   >
                     {row.getVisibleCells().map((cell) => {
                       return (
-                        <td
-                          key={cell.id}
-                          className="px-3.5 py-2 cursor-pointer"
-                        >
+                        <td key={cell.id} className="px-3.5 py-2">
                           {flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext()

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FaPen } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import { USERS } from "@/components";
 import {
   createColumnHelper,
@@ -13,14 +15,15 @@ import SearchHeader from "../SearchHeader";
 
 const Table = () => {
   const columnHelper = createColumnHelper();
-  const [selectAll, setSelectAll] = useState(false);
   const [editingRow, setEditingRow] = useState(null);
 
-  const handleEdit = (row) => {
+  const handleEdit = (e, row) => {
+    e.preventDefault();
     setEditingRow(row);
   };
 
-  const handleDelete = (row) => {
+  const handleDelete = (e, row) => {
+    e.preventDefault();
     setData((old) => old.filter((data) => data.id !== row.id));
   };
 
@@ -107,14 +110,19 @@ const Table = () => {
     }),
     columnHelper.accessor("actions", {
       cell: (info) => (
-        <div>
-          <button onClick={() => handleEdit(info.row.original)}>Edit</button>
-          <button onClick={() => handleDelete(info.row.original)}>
-            Delete
+        <div className="flex gap-4">
+          <button
+            className="text-2xl"
+            onClick={(e) => handleEdit(e, info.row.original)}
+          >
+            <FaPen />
+          </button>
+          <button onClick={(e) => handleDelete(e, info.row.original)}>
+            <MdDelete className="text-2xl" />
           </button>
         </div>
       ),
-      header: "Actions",
+      header: "",
     }),
   ];
   const [globalFilter, setGlobalFilter] = useState("");
@@ -140,6 +148,7 @@ const Table = () => {
   return (
     <div className="p-2 text-black">
       <SearchHeader setGlobalFilter={setGlobalFilter} />
+
       <div className="mt-4">
         <RenderTable table={table} />
       </div>

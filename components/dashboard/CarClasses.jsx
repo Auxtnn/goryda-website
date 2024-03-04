@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import { Data } from "../index.js";
 import { createColumnHelper } from "@tanstack/react-table";
 import ReuseTable from "./ReuseTable";
+import { FaPen } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const CarClasses = () => {
   const fileInputRef = useRef(null);
@@ -31,7 +33,10 @@ const CarClasses = () => {
     updatedCheckboxes[index] = !updatedCheckboxes[index];
     setCheckboxes(updatedCheckboxes);
   };
-
+  const handleDelete = (e, row) => {
+    e.preventDefault();
+    setData((old) => old.filter((data) => data.id !== row.id));
+  };
   const columnHelper = createColumnHelper();
 
   const columns = [
@@ -84,16 +89,21 @@ const CarClasses = () => {
       cell: (info) => <span>{info.getValue()}</span>,
       header: "Out of Branch",
     }),
-    columnHelper.accessor("", {
+    columnHelper.accessor("id", {
       cell: (info) => (
-        <div className="flex gap-5 text-2xl">
-          <button>🖊</button>
-          <button>♻</button>
+        <div className="flex gap-4">
+          <button className="text-2xl">
+            <FaPen />
+          </button>
+          <button onClick={(e) => handleDelete(e, info.row.original)}>
+            <MdDelete className="text-2xl" />
+          </button>
         </div>
       ),
-      header: "Actions",
+      header: "",
     }),
   ];
+
   const [data, setData] = useState([...Data]);
   const [addNewUser, setAddNewUser] = useState(false);
   return (
@@ -202,8 +212,6 @@ const CarClasses = () => {
                 <input className="border border-gray-200  p-2" type="text" />
               </label>
             </div>
-
-            {/* Add more form fields as needed */}
 
             <div className="flex justify-end mt-4">
               <button
