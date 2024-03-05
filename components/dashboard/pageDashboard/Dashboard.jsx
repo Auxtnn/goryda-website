@@ -7,11 +7,11 @@ import {
   FaBookOpen,
 } from "react-icons/fa";
 
-import Card from "./pageDashboard/Card";
-import Table from "./pageDashboard/Table";
-import { MyChart, drivers } from "../index.js";
+import Card from "./Card";
+import Table from "./Table";
+import { MyChart, drivers } from "../../index.js";
 
-import DriverCard from "./pageDashboard/DriverCard";
+import DriverCard from "./DriverCard";
 import { BiRightArrow, BiHeadphone } from "react-icons/bi";
 import { MdOutlineBatchPrediction } from "react-icons/md";
 

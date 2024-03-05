@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { drivers } from "./drivers/index.js";
+import { drivers } from "@/components/index.js";
 import {
   createColumnHelper,
   getCoreRowModel,
@@ -9,10 +9,10 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import ToggleSwitch from "./drivers/ToggleSwith.jsx";
+import ToggleSwitch from "./ToggleSwith.jsx";
 import { BsArrowRight } from "react-icons/bs";
 import { BiBox } from "react-icons/bi";
-import FirstTable from "./drivers/FirstTable.jsx";
+import FirstTable from "./FirstTable.jsx";
 
 const Drivers = () => {
   const columnHelper = createColumnHelper();

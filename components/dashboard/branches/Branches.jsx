@@ -1,11 +1,8 @@
 import { useState, useRef } from "react";
-import { Data } from "../index.js";
-import { createColumnHelper } from "@tanstack/react-table";
-import ReuseTable from "./ReuseTable";
-import { FaPen } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import TableEditDelete from "./TableEditDelete";
 
 const CarClasses = () => {
+  const [addNewUser, setAddNewUser] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleImageClick = () => {
@@ -13,111 +10,22 @@ const CarClasses = () => {
   };
 
   const handleFileChange = (event) => {
-    // Handle the file change event here
     const selectedFile = event.target.files[0];
     console.log("Selected File:", selectedFile);
   };
 
-  const [checkAll, setCheckAll] = useState(false);
-  const [checkboxes, setCheckboxes] = useState(Array(Data.length).fill(false));
-
-  // Handler for the "check all" checkbox
-  const handleCheckAll = () => {
-    setCheckAll(!checkAll);
-    setCheckboxes(checkboxes.map(() => !checkAll));
-  };
-
-  // Handler for individual checkboxes
-  const handleCheckboxChange = (index) => {
-    const updatedCheckboxes = [...checkboxes];
-    updatedCheckboxes[index] = !updatedCheckboxes[index];
-    setCheckboxes(updatedCheckboxes);
-  };
-  const handleDelete = (e, row) => {
-    e.preventDefault();
-    setData((old) => old.filter((data) => data.id !== row.id));
-  };
-  const columnHelper = createColumnHelper();
-
-  const columns = [
-    columnHelper.accessor("id", {
-      id: "S.no",
-      cell: (info) => (
-        <input
-          type="checkbox"
-          checked={checkboxes[info.getValue()]}
-          onChange={() => handleCheckboxChange(info.getValue())}
-        />
-      ),
-      header: (
-        <input type="checkbox" checked={checkAll} onChange={handleCheckAll} />
-      ),
-    }),
-    columnHelper.accessor("", {
-      cell: (info) => (
-        <div className="flex gap-3 items-center">
-          <img
-            src="https://diabetesneeds.co.uk/wp-content/uploads/2014/11/rsz_young_peoples_needs.jpg"
-            alt="..."
-            className="rounded-full object-cover h-10 w-10"
-          />
-          <p>
-            <span className="block">09068482163</span>
-            <span className="block">Samuel</span>
-          </p>
-        </div>
-      ),
-      header: "User",
-    }),
-    columnHelper.accessor("StartingVal", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Starting Value",
-    }),
-    columnHelper.accessor("freeKm", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Free Km",
-    }),
-    columnHelper.accessor("perKreeKm", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Per Free Km",
-    }),
-    columnHelper.accessor("walkingTime", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Walking Time",
-    }),
-    columnHelper.accessor("OutofBrach", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Out of Branch",
-    }),
-    columnHelper.accessor("id", {
-      cell: (info) => (
-        <div className="flex gap-4">
-          <button className="text-2xl">
-            <FaPen />
-          </button>
-          <button onClick={(e) => handleDelete(e, info.row.original)}>
-            <MdDelete className="text-2xl" />
-          </button>
-        </div>
-      ),
-      header: "",
-    }),
-  ];
-
-  const [data, setData] = useState([...Data]);
-  const [addNewUser, setAddNewUser] = useState(false);
   return (
     <div className="p-4">
       <div className="flex px-10 justify-between">
-        <p className="font-semibold text-2xl">Car Classes List</p>
+        <p className="font-semibold text-2xl">Branches</p>
         <button
           className="bg-blue-600 text-white font-semibold border-none outline-none px-4 py-2.5 rounded-md"
           onClick={() => setAddNewUser(!addNewUser)}
         >
-          Add Car Classes
+          Add New Branch
         </button>
       </div>
-      <ReuseTable data={data} columns={columns} />;
+      <TableEditDelete />
       {addNewUser && (
         <div className="fixed w-full h-screen bg-gray-200 top-0 left-0 bg-opacity-50 flex justify-center items-center">
           <form className="bg-white  p-8 rounded-lg shadow-md max-w-2xl w-full">
@@ -213,12 +121,14 @@ const CarClasses = () => {
               </label>
             </div>
 
+            {/* Add more form fields as needed */}
+
             <div className="flex justify-end mt-4">
               <button
                 type="submit"
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
-                Add New Teacher
+                Add New Branches
               </button>
             </div>
           </form>

@@ -1,5 +1,5 @@
-import Table from "./pageDashboard/Table";
-import StepHeader from "./rides/StepHeader";
+import Table from "../pageDashboard/Table";
+import StepHeader from "./StepHeader";
 
 const Rides = () => {
   return (

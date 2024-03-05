@@ -8,7 +8,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import RenderTable from "../RenderTable.jsx";
+import RenderTable from "../table/RenderTable.jsx";
 import SearchHeader from "../SearchHeader.jsx";
 
 function FirstTable({ setSelectedDriver }) {

@@ -2,31 +2,28 @@ import { flexRender } from "@tanstack/react-table";
 
 function RenderTable({ table, setSelectedDriver }) {
   return (
-    <div>
+    <div className="mt-4">
       <table className="border-none text-left w-full">
         <thead className="bg-gray-50">
-          {table.getHeaderGroups().map((headerGroup) => {
-            return (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <th key={header.id} className="capitalize p-4">
-                      {flexRender(
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id} className="capitalize p-4">
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
                         header.column.columnDef.header,
                         header.getContext()
                       )}
-                    </th>
-                  );
-                })}
-              </tr>
-            );
-          })}
+                </th>
+              ))}
+            </tr>
+          ))}
         </thead>
 
         <tbody>
           {table.getRowModel().rows.length
             ? table.getRowModel().rows.map((row, i) => {
-                console.log(row);
                 return (
                   <tr
                     key={i}

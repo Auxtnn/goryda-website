@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TableWithEditDelete from "./rides/TableWithEditDelete";
+import TableWithEditDelete from "./TableWithEditDelete";
 
 const Clients = () => {
   const [searchTerm, setSearchTerm] = useState(null);

@@ -14,23 +14,22 @@ import Team from "./About/Team";
 import Navbar from "./Global/Navbar";
 import Login from "./Auth/Login";
 import Sidebar from "./dashboard/Sidebar";
-import Clients from "./dashboard/Clients";
-import Dashboard from "./dashboard/Dashboard";
-import Drivers from "./dashboard/Drivers";
-import Orders from "./dashboard/Orders";
-import Rides from "./dashboard/Rides";
+import Clients from "./dashboard/clients/Clients";
+import Dashboard from "./dashboard/pageDashboard/Dashboard";
+import Drivers from "./dashboard/drivers/Drivers";
+import Orders from "./dashboard/pageOrders/Orders";
+import Rides from "./dashboard/rides/Rides";
 import Shift from "./dashboard/Shift";
 import Settings from "./dashboard/Settings";
-import Moderators from "./dashboard/Moderators";
-import Branches from "./dashboard/Branches";
-import CarClasses from "./dashboard/CarClasses";
-import LiveMap from "./dashboard/LiveMap";
+import Moderators from "./dashboard/moderators/Moderators";
+import Branches from "./dashboard/branches/Branches";
+import CarClasses from "./dashboard/carClasses/CarClasses";
+import LiveMap from "./dashboard/map/LiveMap";
 import Table from "./dashboard/pageDashboard/Table";
 import KnowledgeBase from "./dashboard/pageDashboard/KnowledgeBase";
 import TopDriver from "./dashboard/pageDashboard/TopDriver";
 import MyChart from "./dashboard/pageDashboard/MyChart";
 import Header from "./dashboard/header/Header";
-import { faker } from "@faker-js/faker";
 
 export {
   Navbar,

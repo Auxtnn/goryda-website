@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Page1 from "./pageOrders/Page1";
-import Page2 from "./pageOrders/Page2";
-import Page3 from "./pageOrders/Page3";
+import Page1 from "./Page1";
+import Page2 from "./Page2";
+import Page3 from "./Page3";
 
 const Orders = () => {
   const [page, setPage] = useState("Page1");
