@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import Page1 from "./pageOrders/Page1";
 import Page2 from "./pageOrders/Page2";

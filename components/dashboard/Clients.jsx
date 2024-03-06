@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import TableWithEditDelete from "./rides/TableWithEditDelete";
 import { FiSearch } from "react-icons/fi";

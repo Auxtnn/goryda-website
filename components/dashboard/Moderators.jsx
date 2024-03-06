@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import { MdPerson2 } from "react-icons/md";
 

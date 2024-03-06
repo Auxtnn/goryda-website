@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import ReuseTable from "./ReuseTable.jsx";
 import { Data } from "../index.js";

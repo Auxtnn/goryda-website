@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useRef } from "react";
 import { Data } from "../index.js";
 import { createColumnHelper } from "@tanstack/react-table";
