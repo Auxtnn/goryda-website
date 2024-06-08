@@ -8,11 +8,11 @@ import {
   FaBookOpen,
 } from "react-icons/fa";
 
-import Card from "./pageDashboard/Card";
-import Table from "./pageDashboard/Table";
-import { MyChart, drivers } from "../index.js";
+import Card from "./Card";
+import Table from "./Table";
+import { MyChart, drivers } from "../../index.js";
 
-import DriverCard from "./pageDashboard/DriverCard";
+import DriverCard from "./DriverCard";
 import { BiRightArrow, BiHeadphone } from "react-icons/bi";
 import { MdOutlineBatchPrediction } from "react-icons/md";
 
@@ -32,7 +32,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-3 gap-4">
         <div className="col-span-2 lg:col-span-2 p-4 m-2">
           <p className="font-bold text-xl">Knowledge Base</p>
-          <div className="grid grid-cols-4">
+          <div className="relative w-full p-5 grid grid-cols-2 lg:grid-cols-4 gap-7 overflow-x-auto">
             <Card
               icon1={<FaCar />}
               icon2={<FaChevronRight />}
@@ -78,33 +78,32 @@ const Dashboard = () => {
               <div className="w-full mx-auto mt-8">
                 {selectedDriver ? (
                   <div>
-                    <button
-                      className="bg-blue-500 text-white py-2 px-4 mb-4"
-                      onClick={showDriversList}
-                    >
-                      {"<"}
-                    </button>
                     <div>
-                      <div className="flex justify-between bg-gray-100 items-center p-3 rounded-xl">
-                        <div className="flex gap-4 items-center rounded-md">
+                      <div
+                        className="flex justify-between bg-gray-100 items-center p-4 rounded-xl cursor-pointer mb-5"
+                        onClick={showDriversList}
+                      >
+                        <div className="flex gap-3">
                           <img
                             src={selectedDriver.image}
                             alt={selectedDriver.name}
-                            className="h-10 w-10 rounded-lg"
+                            className="h-11 w-11 rounded-lg mb-2"
                           />
-                          <p className="flex flex-col">
-                            <span>{selectedDriver.name}</span>
-                            <span>{selectedDriver.number}</span>
-                          </p>
+                          <div className="font-normal">
+                            <span className="block font-semibold">
+                              {selectedDriver.name}
+                            </span>
+                            <span className="text-[0.8rem]">0802376453728</span>
+                          </div>
                         </div>
-                        <p className="text-normal">
+                        <div className="flex-1 text-right">
                           <span className="block">
-                            Earning: {selectedDriver.earnings}{" "}
+                            Order: <span className="font-bold">$100</span>
                           </span>
                           <span className="block">
-                            Income: {selectedDriver.number}
+                            Income: <span className="font-bold">50</span>
                           </span>
-                        </p>
+                        </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-4  mt-2">
@@ -127,16 +126,33 @@ const Dashboard = () => {
                       {drivers.map((driver) => (
                         <div
                           key={driver.id}
-                          className="bg-gray-200 p-4 cursor-pointer flex justify-between gap-4 items-center"
+                          className="bg-gray-100/[0.5] p-4 cursor-pointer flex  gap-4 items-center"
                           onClick={() => showDriverDetails(driver)}
                         >
-                          <img
-                            src={driver.image}
-                            alt={driver.name}
-                            className="h-10 w-10 rounded-full mb-2"
-                          />
-                          <div className="font-bold">{driver.name}:</div>
-                          <div>{driver.number}</div>
+                          <div className="flex gap-3">
+                            <img
+                              src={driver.image}
+                              alt={driver.name}
+                              className="h-11 w-11 rounded-lg mb-2"
+                            />
+                            <div className="font-normal">
+                              <span className="block font-semibold">
+                                {driver.name}
+                              </span>
+                              <span className="text-[0.8rem]">
+                                0802376453728
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="flex-1 text-right">
+                            <span className="block">
+                              Order: <span className="font-bold">$100</span>
+                            </span>
+                            <span className="block">
+                              Income: <span className="font-bold">50</span>
+                            </span>
+                          </div>
                         </div>
                       ))}
                     </div>

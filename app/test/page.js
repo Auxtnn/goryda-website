@@ -8,6 +8,8 @@ const page = () => {
 
     //Function to send driver's availablility to the backend
     const sendDriverAvailability = async (driverId, name) => {
+
+      
       const driverData = {
         id: driverId,
         name: name,

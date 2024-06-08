@@ -1,11 +1,10 @@
 "use client"
 
 import { useState, useRef } from "react";
-import { Data } from "../index.js";
-import { createColumnHelper } from "@tanstack/react-table";
-import ReuseTable from "./ReuseTable";
+import TableEditDelete from "./TableEditDelete";
 
 const CarClasses = () => {
+  const [addNewUser, setAddNewUser] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleImageClick = () => {
@@ -13,44 +12,14 @@ const CarClasses = () => {
   };
 
   const handleFileChange = (event) => {
-    // Handle the file change event here
     const selectedFile = event.target.files[0];
     console.log("Selected File:", selectedFile);
   };
 
-  const columnHelper = createColumnHelper();
-  const columns = [
-    columnHelper.accessor("id", {
-      id: "S.no",
-      cell: (info) => <p>{info.getValue()}</p>,
-      header: "S/N",
-    }),
-
-    columnHelper.accessor("BranchName", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Branches",
-    }),
-    columnHelper.accessor("freeKm", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Free Km",
-    }),
-
-    columnHelper.accessor("", {
-      cell: (info) => (
-        <div className="flex gap-5 text-2xl">
-          <button>🖊</button>
-          <button>♻</button>
-        </div>
-      ),
-      header: "Actions",
-    }),
-  ];
-  const [data, setData] = useState([...Data]);
-  const [addNewUser, setAddNewUser] = useState(false);
   return (
     <div className="p-4">
       <div className="flex px-10 justify-between">
-        <p className="font-semibold text-2xl">Car Classes List</p>
+        <p className="font-semibold text-2xl">Branches</p>
         <button
           className="bg-blue-600 text-white font-semibold border-none outline-none px-4 py-2.5 rounded-md"
           onClick={() => setAddNewUser(!addNewUser)}
@@ -58,7 +27,7 @@ const CarClasses = () => {
           Add New Branch
         </button>
       </div>
-      <ReuseTable data={data} columns={columns} />;
+      <TableEditDelete />
       {addNewUser && (
         <div className="fixed w-full h-screen bg-gray-200 top-0 left-0 bg-opacity-50 flex justify-center items-center">
           <form className="bg-white  p-8 rounded-lg shadow-md max-w-2xl w-full">

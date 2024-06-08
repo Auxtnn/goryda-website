@@ -1,34 +1,37 @@
 import React from "react";
 import { CiLogout } from "react-icons/ci";
+import { IoHome, IoLogOut } from "react-icons/io5";
+import { GiBottomRight3DArrow, GiHamburgerMenu } from "react-icons/gi";
 import { BiMenu } from "react-icons/bi";
 
 const Header = ({ settoggleSidebar, toggleSidebar }) => {
   const date = new Date();
-  let time = date.getHours();
-  const realHour =
-    time < 12
-      ? "Good morning"
-      : time > 11 && time < 16
+  const realHour = date.getHours();
+  console.log(realHour);
+  let setHour =
+    realHour < 12
+      ? "Good Morning"
+      : realHour > 11 || realHour < 16
       ? "Good Afternoon"
-      : "Good evening";
+      : "Good Evening";
 
   return (
-    <div className="w-full text-gray-900 flex justify-between items-center px-4 mb-4">
-      <div className="flex-1 flex gap-10 ">
-        <BiMenu
-          className="text-2xl cursor-pointer"
-          onClick={() => settoggleSidebar(!toggleSidebar)}
-        />
-        <p>
-          {realHour}, <span className="italic">Awolu Samuel 👋</span>
-        </p>
-        <p className="text-[0.75rem]">
-          You have <span className="text-blue-700"> 1 new message</span>{" "}
+    <div className="w-full h-[60px] flex justify-between items-center px-2.5">
+      <div className=" cursor-pointer relative  top-0 w-[60px] h-[60px]flex justify-center items-center text-[2.5rem] ">
+        <GiHamburgerMenu onClick={() => settoggleSidebar(!toggleSidebar)} />
+      </div>
+      <div className="flex gap-5">
+        <p>{setHour}, Samuel 👋</p>
+        <p className=" text-[13px]">
+          You have <span className="text-blue-600">{1} new message</span>
         </p>
       </div>
-      <span>
-        <CiLogout className="text-2xl cursor-pointer" />
-      </span>
+      <div className=" cursor-pointer relative flex items-center justify-end text-[2.5rem] flex-1 ">
+        <IoLogOut
+          className="w-[50px] h-[50px]"
+          onClick={() => console.log("Login Out ...")}
+        />
+      </div>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 import { TbBrand4Chan } from "react-icons/tb";
 import { BiCar } from "react-icons/bi";
+import Link from "next/link";
 
 const Sidebar = ({ selectedTab, onTabClick, toggleSidebar }) => {
   const navLinks = [
@@ -53,36 +54,67 @@ const Sidebar = ({ selectedTab, onTabClick, toggleSidebar }) => {
   ];
 
   return (
-    <aside className={toggleSidebar ? "navigation" : "navigation width"}>
-      <div className="flex mb-10 w-[100%]">
-        <div className="flex mb-4 p-4 gap-4 items-center">
-          <span className="">
-            <FaRegUser className="text-white w-10 p-[2px] h-10 border-2 border-solid border-white rounded-full" />
-          </span>
-          <p className={toggleSidebar ? "" : "hidden"}>
-            <span className="block text-white">Brand Name</span>
-            <span className="block text-gray-200 text-[10px]">
-              +234-07068482163
-            </span>
-          </p>
-        </div>
-      </div>
-      <ul className="mt-20">
-        {navLinks.map((item) => (
-          <li
-            key={item.key}
-            className={`list ${selectedTab === item.title ? "active" : ""}`}
-            onClick={() => onTabClick(item.title)}
+    <div
+      className={`fixed  bg-slate-900 h-full border-l-[10px] border-l-slate-900 transition-[width] duration-[0.5s] overflow-hidden  ${
+        toggleSidebar ? "w-[80px] " : "w-[294px]"
+      }`}
+    >
+      <ul className="absolute top-0 left-0 w-full">
+        <li className="relative w-full list-none hover:bg-white pointer-events-none mb-[40px] pl-2 pt-4">
+          <a
+            href="#"
+            className="relative w-full flex text-white pl-2 items-center hover:text-blue-500"
           >
-            <p>
-              <span className="icon">{item.icon}</span>
-              <span className="title">{item.title}</span>
-            </p>
-          </li>
-        ))}
+            <span className=" leading-[75px] relative min-w-[60px]">
+              <FaRegUser className="text-[2rem]" />
+            </span>
+            <span className="relative inline-block px-2.5 h-[60px] text-start whitespace-nowrap">
+              <span>Awolu Samuel</span>
+              <span className="block">09064823477</span>
+            </span>
+          </a>
+        </li>
+
+        {navLinks.map((item) => {
+          return (
+            <li
+              className={`relative w-full list-none rounded-tl-[30px] rounded-bl-[30px] pl-2 cursor-pointer ${
+                selectedTab === item.title ? "bg-white" : ""
+              }`}
+              key={item.key}
+              onClick={() => onTabClick(item.title)}
+            >
+              <a
+                className={`relative w-full flex text-white pl-2 items-center  ${
+                  selectedTab === item.title
+                    ? "  text-slate-800 before:content-[''] before:absolute before:right-0 before:top-[-50px] before:w-[50px] before:h-[50px] before:bg-transparent before:rounded-full before:pointer-events-none before:shadow-[35px_35px_0px_10px_#fff] after:content-[''] after:absolute after:right-0 after:bottom-[-50px] after:w-[50px] after:h-[50px] after:bg-transparent after:rounded-full after:pointer-events-none after:shadow-[35px_-35px_0px_10px_#fff] "
+                    : ""
+                }`}
+              >
+                <span className=" leading-[75px] relative min-w-[60px]">
+                  <span
+                    className={`text-[2rem] ${
+                      selectedTab === item.title
+                        ? "text-slate-800"
+                        : "text-white"
+                    }`}
+                  >
+                    {item.icon}
+                  </span>
+                </span>
+                <span
+                  className={`relative inline-block px-2.5 font-semibold h-[60px] leading-[60px] text-start whitespace-nowrap ${
+                    selectedTab === item.title ? "text-slate-800" : "text-white"
+                  }`}
+                >
+                  {item.title}
+                </span>
+              </a>
+            </li>
+          );
+        })}
       </ul>
-    </aside>
+    </div>
   );
 };
-
 export default Sidebar;

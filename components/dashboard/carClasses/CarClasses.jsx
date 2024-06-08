@@ -1,8 +1,11 @@
 "use client"
 import { useState, useRef } from "react";
-import { Data } from "../index.js";
+import { Data } from "../../index.js";
 import { createColumnHelper } from "@tanstack/react-table";
-import ReuseTable from "./ReuseTable";
+import ReuseTable from "../ReuseTable.jsx";
+import { FaPen } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import TableEditDelete from "./TableEditDelete.jsx";
 
 const CarClasses = () => {
   const fileInputRef = useRef(null);
@@ -17,59 +20,6 @@ const CarClasses = () => {
     console.log("Selected File:", selectedFile);
   };
 
-  const columnHelper = createColumnHelper();
-  const columns = [
-    columnHelper.accessor("", {
-      id: "S.no",
-      cell: (info) => <input type="checkbox" />,
-      header: <input type="checkbox" />,
-    }),
-    columnHelper.accessor("", {
-      cell: (info) => (
-        <div className="flex gap-3 items-center">
-          <img
-            src="https://diabetesneeds.co.uk/wp-content/uploads/2014/11/rsz_young_peoples_needs.jpg"
-            alt="..."
-            className="rounded-full object-cover h-10 w-10"
-          />
-          <p>
-            <span className="block">09068482163</span>
-            <span className="block">Samuel</span>
-          </p>
-        </div>
-      ),
-      header: "User",
-    }),
-    columnHelper.accessor("StartingVal", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Starting Value",
-    }),
-    columnHelper.accessor("freeKm", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Free Km",
-    }),
-    columnHelper.accessor("perKreeKm", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Per Free Km",
-    }),
-    columnHelper.accessor("walkingTime", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Walking Time",
-    }),
-    columnHelper.accessor("OutofBrach", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "Out of Branch",
-    }),
-    columnHelper.accessor("", {
-      cell: (info) => (
-        <div className="flex gap-5 text-2xl">
-          <button>🖊</button>
-          <button>♻</button>
-        </div>
-      ),
-      header: "Actions",
-    }),
-  ];
   const [data, setData] = useState([...Data]);
   const [addNewUser, setAddNewUser] = useState(false);
   return (
@@ -83,7 +33,7 @@ const CarClasses = () => {
           Add Car Classes
         </button>
       </div>
-      <ReuseTable data={data} columns={columns} />;
+      <TableEditDelete />
       {addNewUser && (
         <div className="fixed w-full h-screen bg-gray-200 top-0 left-0 bg-opacity-50 flex justify-center items-center">
           <form className="bg-white  p-8 rounded-lg shadow-md max-w-2xl w-full">
@@ -178,8 +128,6 @@ const CarClasses = () => {
                 <input className="border border-gray-200  p-2" type="text" />
               </label>
             </div>
-
-            {/* Add more form fields as needed */}
 
             <div className="flex justify-end mt-4">
               <button

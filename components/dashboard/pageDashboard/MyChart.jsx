@@ -45,7 +45,7 @@ const MyChart = () => {
   };
 
   const data = {
-    labels: months.map((month) => `${month}-${selectedYear}`),
+    labels: months.map((month) => `${month}`),
     datasets: [
       {
         type: "bar",
@@ -53,6 +53,12 @@ const MyChart = () => {
         data: selectedYearData.data,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: months.map((month) => getBackgroundColor(month)),
+        pointStyle: "circle", // Set the point style to 'circle'
+        pointRadius: 5,
+        legend: {
+          display: false,
+          usePointStyle: true,
+        },
       },
       {
         type: "line",
@@ -61,6 +67,12 @@ const MyChart = () => {
         fill: false,
         borderColor: "rgb(54, 162, 235)",
         tension: 0.4,
+        pointStyle: "circle", // Set the point style to 'circle'
+        pointRadius: 5,
+        legend: {
+          display: false,
+          usePointStyle: true,
+        },
       },
       {
         type: "line",
@@ -69,6 +81,12 @@ const MyChart = () => {
         fill: false,
         borderColor: "rgb(255, 205, 86)",
         tension: 0.4,
+        pointStyle: "circle", // Set the point style to 'circle'
+        pointRadius: 5,
+        legend: {
+          display: false,
+          usePointStyle: true,
+        },
       },
     ],
   };
@@ -136,8 +154,8 @@ const MyChart = () => {
 
   return (
     <div className="flex flex-col w-full items-center p-4">
-      <div className="w-full flex justify-around">
-        <p>Statistic</p>
+      <div className="w-full flex justify-between px-4">
+        <p className="font-serif text-2xl">Statistic</p>
         <div>
           <MonthSwitcher
             currentMonth={selectedMonth}
