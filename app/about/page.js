@@ -8,6 +8,7 @@ import {
   Value,
   Team,
   Footer,
+  Download,
 } from "@/components";
 
 export default function About() {
@@ -19,6 +20,7 @@ export default function About() {
       <Value />
       <Vision />
       <Team />
+      <Download />
       <Footer />
     </div>
   );

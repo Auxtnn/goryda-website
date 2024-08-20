@@ -3,7 +3,7 @@ import { MdDriveEta } from "react-icons/md";
 
 const Value = () => {
   return (
-    <section className=" bg-gradient-to-b from-white via-green-50 to-white">
+    <section className=" bg-gradient-to-b from-white via-green-50 to-white px-4">
       <h2 className="text-center font-display text-2xl font-bold tracking-tight md:text-[2rem]">
         Our Core Values
       </h2>

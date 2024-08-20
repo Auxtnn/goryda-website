@@ -1,23 +1,62 @@
-"use client"
-import React, { useState, useCallback } from "react";
-import {
-  FaCar,
-  FaMoneyBillWave,
-  FaChevronRight,
-  FaMicrophone,
-  FaBookOpen,
-} from "react-icons/fa";
-
-import Card from "./Card";
-import Table from "./Table";
-import { MyChart, drivers } from "../../index.js";
-
-import DriverCard from "./DriverCard";
-import { BiRightArrow, BiHeadphone } from "react-icons/bi";
-import { MdOutlineBatchPrediction } from "react-icons/md";
+"use client";
+import React, { useState, useCallback, useEffect } from "react";
+import {  FaCar, FaUsers } from "react-icons/fa";
+import TransactionList from "./TransactionList";
+import Image from "next/image";
+import { FaNairaSign } from "react-icons/fa6";
+import TopDrivers from "./TopDriver";
 
 const Dashboard = () => {
   const [selectedDriver, setSelectedDriver] = useState(null);
+  const [transactions, setTransactions] = useState([]);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const [error, setError] = useState("");
+  const [totalEarnings, setTotalEarnings] = useState(0);
+  const [totalRides, setTotalRides] = useState(0);
+  const [totalDrivers, setTotalDrivers] = useState(0);
+  const [cancelledRides, setCancelledRides] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const response = await fetch("", {
+          method: "GET",
+          headers: {
+            Authorization: ``,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+
+        setTotalEarnings(data.data.totalEarnings || 0);
+        setTotalRides(data.data.totalRides || 0);
+        setTotalDrivers(data.data.totalDrivers || 0);
+        setCancelledRides(data.data.cancelledRides || 0);
+
+        const transactions = data.data.transactions || [];
+        setTransactions(transactions);
+        setFilteredTransactions(transactions.slice(0, 5));
+      } catch (error) {
+        setError(error.message);
+        // toast.error("Failed to fetch transactions");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
+
+  //   if (loading) {
+  //     return (
+  //       <div className="flex justify-center items-center h-screen">
+  //         <Loader />
+  //       </div>
+  //     );
+  //   }
 
   const showDriverDetails = useCallback((driver) => {
     setSelectedDriver(driver);
@@ -28,149 +67,61 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-2 lg:col-span-2 p-4 m-2">
-          <p className="font-bold text-xl">Knowledge Base</p>
-          <div className="relative w-full p-5 grid grid-cols-2 lg:grid-cols-4 gap-7 overflow-x-auto">
-            <Card
-              icon1={<FaCar />}
-              icon2={<FaChevronRight />}
-              text="Total Order"
-              bg="bg-[#3366FF]/[0.2]"
-              color="text-[#3366FF]"
-            />
-            <Card
-              icon1={<FaMoneyBillWave />}
-              icon2={<FaChevronRight />}
-              text="Total Earnings"
-              bg="bg-[#FF333F]/[0.2]"
-              color="text-[#FF333F]"
-            />
-            <Card
-              icon1={<FaCar />}
-              icon2={<FaChevronRight />}
-              text="Profit"
-              bg="bg-[#FF9533]/[0.2]"
-              color="text-[#FF9533]"
-            />
-            <Card
-              icon1={<FaCar />}
-              icon2={<FaChevronRight />}
-              text="Profit"
-              bg="bg-[#FF9533]/[0.2]"
-              color="text-[#3366FF]"
-            />
-          </div>
-          <div className="mt-4 bg-gray-50 px-3">
-            <MyChart />
-          </div>
+    <div className="px-4 md:px-6 pt-8 pb-8 overflow-y-auto">
+      <div className=" py-3">
+        <p className="text-lg font-semibold">Dashboard</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-4">
+        {/* Earnings Card */}
+        <div className="bg-white border rounded py-3 px-4 flex flex-col items-center gap-2">
+          <FaNairaSign className="text-green-500 text-3xl" />
+
+          <p className="text-sm text-gray-600">Total Earnings</p>
+          <h5 className="text-lg font-semibold">₦{totalEarnings}</h5>
         </div>
-        <div className="col-span-2 lg:col-span-1">
-          <div className="bg-white rounded-lg p-4 m-2">
-            <div className="text-xl font-bold text-gray-700 flex justify-between">
-              <p>Top Drivers</p>
-              <p>
-                <BiRightArrow />
-              </p>
-            </div>
-            <div className="w-full mx-auto mt-8">
-              <div className="w-full mx-auto mt-8">
-                {selectedDriver ? (
-                  <div>
-                    <div>
-                      <div
-                        className="flex justify-between bg-gray-100 items-center p-4 rounded-xl cursor-pointer mb-5"
-                        onClick={showDriversList}
-                      >
-                        <div className="flex gap-3">
-                          <img
-                            src={selectedDriver.image}
-                            alt={selectedDriver.name}
-                            className="h-11 w-11 rounded-lg mb-2"
-                          />
-                          <div className="font-normal">
-                            <span className="block font-semibold">
-                              {selectedDriver.name}
-                            </span>
-                            <span className="text-[0.8rem]">0802376453728</span>
-                          </div>
-                        </div>
-                        <div className="flex-1 text-right">
-                          <span className="block">
-                            Order: <span className="font-bold">$100</span>
-                          </span>
-                          <span className="block">
-                            Income: <span className="font-bold">50</span>
-                          </span>
-                        </div>
-                      </div>
 
-                      <div className="grid grid-cols-2 gap-4  mt-2">
-                        <DriverCard Icon={BiHeadphone} color={"bg-[#FFB978]"} />
-                        <DriverCard
-                          Icon={MdOutlineBatchPrediction}
-                          color={"bg-[#F86060]"}
-                        />
-                        <DriverCard
-                          Icon={FaMicrophone}
-                          color={"bg-[#778DFF]"}
-                        />
-                        <DriverCard Icon={FaBookOpen} color={"bg-[#64E562]"} />
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <div className="flex flex-col gap-4">
-                      {drivers.map((driver) => (
-                        <div
-                          key={driver.id}
-                          className="bg-gray-100/[0.5] p-4 cursor-pointer flex  gap-4 items-center"
-                          onClick={() => showDriverDetails(driver)}
-                        >
-                          <div className="flex gap-3">
-                            <img
-                              src={driver.image}
-                              alt={driver.name}
-                              className="h-11 w-11 rounded-lg mb-2"
-                            />
-                            <div className="font-normal">
-                              <span className="block font-semibold">
-                                {driver.name}
-                              </span>
-                              <span className="text-[0.8rem]">
-                                0802376453728
-                              </span>
-                            </div>
-                          </div>
+        {/* Rides Card */}
+        <div className="bg-white border rounded py-3 px-4 flex flex-col items-center gap-2">
+          <FaCar className="text-green-500 text-3xl" />
+          <p className="text-sm text-gray-600">Completed Rides</p>
+          <h5 className="text-lg font-semibold">{totalRides}</h5>
+        </div>
+        <div className="bg-white border rounded py-3 px-4 flex flex-col items-center gap-2">
+          <FaCar className="text-green-500 text-3xl" />
+          <p className="text-sm text-gray-600">Cancelled Rides</p>
+          <h5 className="text-lg font-semibold">{cancelledRides}</h5>
+        </div>
 
-                          <div className="flex-1 text-right">
-                            <span className="block">
-                              Order: <span className="font-bold">$100</span>
-                            </span>
-                            <span className="block">
-                              Income: <span className="font-bold">50</span>
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+        {/* Drivers Card */}
+        <div className="bg-white border rounded py-3 px-4 flex flex-col items-center gap-2">
+          <FaUsers className="text-green-500 text-3xl" />
+          <p className="text-sm text-gray-600">Total Drivers</p>
+          <h5 className="text-lg font-semibold">{totalDrivers}</h5>
         </div>
       </div>
 
-      <div className="mt-4">
-        <div className="bg-white rounded-lg p-4 m-2">
-          <div className="mt-4">
-            <Table />
-          </div>
-        </div>
+      <div className="flex justify-between py-4 md:py-10 pb-2">
+        <p className="text-lg font-semibold">Recent Transactions</p>
       </div>
+
+      <div className="bg-white p-4 rounded-lg">
+        {filteredTransactions.length > 0 ? (
+          <TransactionList transactions={filteredTransactions} />
+        ) : (
+          <div className="text-center py-8">
+            <Image
+              width={50}
+              height={50}
+              src="/images/empty.png"
+              className="mx-auto h-40 w-auto"
+              alt="No information found"
+            />
+            <p className="text-sm text-gray-600">No transactions found</p>
+          </div>
+        )}
+      </div>
+      <TopDrivers />
     </div>
   );
 };

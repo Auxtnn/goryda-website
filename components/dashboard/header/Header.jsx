@@ -1,36 +1,24 @@
 import React from "react";
-import { CiLogout } from "react-icons/ci";
-import { IoHome, IoLogOut } from "react-icons/io5";
-import { GiBottomRight3DArrow, GiHamburgerMenu } from "react-icons/gi";
-import { BiMenu } from "react-icons/bi";
+import { IoLogOut } from "react-icons/io5";
+import { GiHamburgerMenu } from "react-icons/gi";
+import Link from "next/link";
 
 const Header = ({ settoggleSidebar, toggleSidebar }) => {
-  const date = new Date();
-  const realHour = date.getHours();
-  console.log(realHour);
-  let setHour =
-    realHour < 12
-      ? "Good Morning"
-      : realHour > 11 || realHour < 16
-      ? "Good Afternoon"
-      : "Good Evening";
-
   return (
-    <div className="w-full h-[60px] flex justify-between items-center px-2.5">
-      <div className=" cursor-pointer relative  top-0 w-[60px] h-[60px]flex justify-center items-center text-[2.5rem] ">
-        <GiHamburgerMenu onClick={() => settoggleSidebar(!toggleSidebar)} />
-      </div>
-      <div className="flex gap-5">
-        <p>{setHour}, Samuel 👋</p>
-        <p className=" text-[13px]">
-          You have <span className="text-blue-600">{1} new message</span>
-        </p>
-      </div>
-      <div className=" cursor-pointer relative flex items-center justify-end text-[2.5rem] flex-1 ">
-        <IoLogOut
-          className="w-[50px] h-[50px]"
-          onClick={() => console.log("Login Out ...")}
+    <div className="w-full h-[60px] md:h-[70px] flex justify-between items-center px-4 md:px-6 lg:px-8">
+      {/* Sidebar Toggle Button */}
+      <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-2xl md:text-3xl cursor-pointer">
+        <GiHamburgerMenu
+          className="text-green-500"
+          onClick={() => settoggleSidebar(!toggleSidebar)}
         />
+      </div>
+
+      {/* Logout Button */}
+      <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12  cursor-pointer">
+        <Link href="/auth">
+          <IoLogOut className="w-full h-full text-2xl md:text-3xl text-green-500 " />
+        </Link>
       </div>
     </div>
   );

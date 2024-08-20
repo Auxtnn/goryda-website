@@ -1,78 +1,40 @@
 import React from "react";
-import {
-  MdDashboard,
-  MdMenuBook,
-  MdLocalCarWash,
-  MdAddModerator,
-  MdOutlineSettings,
-  MdApartment,
-} from "react-icons/md";
-import { FaUsers, FaRegUser } from "react-icons/fa6";
-import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { MdDashboard, MdLocalCarWash, MdOutlineSettings } from "react-icons/md";
+import { FaUsers, FaNairaSign, FaRegUser } from "react-icons/fa6";
 
-import { TbBrand4Chan } from "react-icons/tb";
-import { BiCar } from "react-icons/bi";
-import Link from "next/link";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 const Sidebar = ({ selectedTab, onTabClick, toggleSidebar }) => {
   const navLinks = [
     { title: "Dashboard", icon: <MdDashboard className="icon" />, key: 1 },
-    { title: "Orders", icon: <MdMenuBook className="icon" />, key: 2 },
+
+    { title: "Drivers", icon: <FaRegUser className="icon" />, key: 2 },
     { title: "Rides", icon: <MdLocalCarWash className="icon" />, key: 3 },
-    { title: "Clients", icon: <FaUsers className="icon" />, key: 4 },
-    { title: "Drivers", icon: <FaRegUser className="icon" />, key: 5 },
+    { title: "Users", icon: <FaUsers className="icon" />, key: 4 },
     {
-      title: "Shift",
-      icon: <RiMoneyDollarCircleFill className="icon" />,
-      key: 6,
+      title: "Transactions",
+      icon: <FaNairaSign className="icon" />,
+      key: 5,
     },
-    {
-      title: "LiveMap",
-      icon: <MdApartment className="icon" />,
-      key: 7,
-    },
-    {
-      title: "CarClasses",
-      icon: <BiCar className="icon" />,
-      key: 8,
-    },
-    {
-      title: "Branches",
-      icon: <TbBrand4Chan className="icon" />,
-      key: 9,
-    },
-    {
-      title: "Moderators",
-      icon: <MdAddModerator className="icon" />,
-      key: 10,
-    },
+
     {
       title: "Settings",
       icon: <MdOutlineSettings className="icon" />,
-      key: 11,
+      key: 6,
     },
   ];
 
   return (
     <div
-      className={`fixed  bg-slate-900 h-full border-l-[10px] border-l-slate-900 transition-[width] duration-[0.5s] overflow-hidden  ${
+      className={`fixed  bg-green-500 h-full border-l-[10px] border-l-green-500 transition-[width] duration-[0.5s] overflow-hidden  ${
         toggleSidebar ? "w-[80px] " : "w-[294px]"
       }`}
     >
       <ul className="absolute top-0 left-0 w-full">
-        <li className="relative w-full list-none hover:bg-white pointer-events-none mb-[40px] pl-2 pt-4">
-          <a
-            href="#"
-            className="relative w-full flex text-white pl-2 items-center hover:text-blue-500"
-          >
-            <span className=" leading-[75px] relative min-w-[60px]">
-              <FaRegUser className="text-[2rem]" />
-            </span>
-            <span className="relative inline-block px-2.5 h-[60px] text-start whitespace-nowrap">
-              <span>Awolu Samuel</span>
-              <span className="block">09064823477</span>
-            </span>
-          </a>
+        <li className="relative w-full list-none hover:bg-white pointer-events-none mb-[10px] pl-2 pt-4">
+          <span className="relative font-semibold text-white uppercase text-base md:text-lg inline-block px-2.5 h-[60px] text-start whitespace-nowrap">
+            Goryda Admin
+          </span>
         </li>
 
         {navLinks.map((item) => {
@@ -95,7 +57,7 @@ const Sidebar = ({ selectedTab, onTabClick, toggleSidebar }) => {
                   <span
                     className={`text-[2rem] ${
                       selectedTab === item.title
-                        ? "text-slate-800"
+                        ? "text-green-500"
                         : "text-white"
                     }`}
                   >
@@ -104,7 +66,7 @@ const Sidebar = ({ selectedTab, onTabClick, toggleSidebar }) => {
                 </span>
                 <span
                   className={`relative inline-block px-2.5 font-semibold h-[60px] leading-[60px] text-start whitespace-nowrap ${
-                    selectedTab === item.title ? "text-slate-800" : "text-white"
+                    selectedTab === item.title ? "text-green-500" : "text-white"
                   }`}
                 >
                   {item.title}
