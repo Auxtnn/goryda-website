@@ -15,12 +15,16 @@ const HeroSection = () => {
           </h2>
 
           <p className="text-lg text-gray-700 mb-6 mt-4 max-w-[480px] text-center md:text-justify">
-          Experience the future of transportation and delivery with our seamless app – where convenience meets innovation, all in one tap.
+            Experience the future of transportation and delivery with our
+            seamless app – where convenience meets innovation, all in one tap.
           </p>
 
           <div className="grid items-center mt-5 md:inline md:mt-5">
             <button>
-              <Link href="/about" className="text-white bg-green-500 rounded py-3 px-6 hover:text-green-700 hover:bg-transparent hover:border-green-700 border">
+              <Link
+                href="/#download"
+                className="text-white bg-green-500 rounded py-3 px-6 hover:text-green-700 hover:bg-transparent hover:border-green-700 border"
+              >
                 Get Started
               </Link>
             </button>

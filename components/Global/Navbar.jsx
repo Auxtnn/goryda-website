@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { TfiClose } from "react-icons/tfi";
 import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 
@@ -21,21 +21,21 @@ const Navbar = () => {
   // Close the menu if clicked outside the menu
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (isMobileMenuOpen && !e.target.closest('.mobile-menu')) {
+      if (isMobileMenuOpen && !e.target.closest(".mobile-menu")) {
         closeMobileMenu();
       }
     };
 
-    document.addEventListener('click', handleOutsideClick);
+    document.addEventListener("click", handleOutsideClick);
 
     return () => {
-      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener("click", handleOutsideClick);
     };
   }, [isMobileMenuOpen]);
 
   return (
     <header>
-      <nav className="p-1 border">
+      <nav className="p-1 md:border">
         <div className="container mx-auto flex justify-between items-center relative">
           <div>
             <Link href="/">
@@ -52,8 +52,7 @@ const Navbar = () => {
             <Link href="/about" className="hover:text-green-500 ">
               About
             </Link>
-          
-           
+
             <Link href="/#services" className="hover:text-green-500">
               Services
             </Link>
@@ -65,7 +64,7 @@ const Navbar = () => {
               Support
             </Link>
             <Link
-              href="#"
+              href="/#download"
               className=" bg-green-500 text-white rounded py-3 px-4 hover:bg-green-600 "
             >
               Get the App
@@ -125,7 +124,7 @@ const Navbar = () => {
                   Support
                 </Link>
                 <Link
-                  href="#"
+                  href="/#download"
                   className="block mx-4 bg-green-500 text-white rounded py-3 px-4 hover-bg-transparent hover-border-green-700 border"
                   onClick={closeMobileMenu}
                 >
@@ -141,4 +140,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

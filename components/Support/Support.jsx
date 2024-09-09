@@ -60,7 +60,7 @@ const Contact = () => {
 
     if (isValidForm) {
       setButtonText("Sending");
-      await fetch("", {
+      await fetch("/api/mail", {
         method: "POST",
         body: JSON.stringify({
           email: email,
@@ -168,6 +168,9 @@ const Contact = () => {
                   <FaFacebookF />
                 </Link>
               </div>
+            </div>
+            <div className="text-neutral-800 text-base font-normal mt-8 tracking-wide">
+              <p>Email: support@goryda.com</p>
             </div>
           </div>
 

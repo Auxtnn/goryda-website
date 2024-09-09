@@ -59,10 +59,8 @@ const Footer = () => {
                   </Link>
                 </li>
 
-                <li>
-                  <a href="#" className="transition hover:opacity-75">
-                    Live Chat
-                  </a>
+                <li className="transition hover:opacity-75">
+                  support@goryda.com
                 </li>
               </ul>
             </div>
