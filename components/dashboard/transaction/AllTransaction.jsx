@@ -5,7 +5,6 @@ import TransactionList from "./TransactionList";
 import Filter from "@/components/Global/Filter";
 import Loader from "@/components/Global/Loader";
 import Pagination from "@/components/Global/Pagination";
-import Image from "next/image";
 import NoInformation from "@/components/Global/NoInformation";
 
 const TransactionPage = () => {

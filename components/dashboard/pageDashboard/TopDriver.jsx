@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Badge } from "@/components/Global";
+
 
 // Dummy data for rides
 const dummyRides = [

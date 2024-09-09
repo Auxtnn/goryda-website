@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
-import {  FaCar, FaUsers } from "react-icons/fa";
-import TransactionList from "./TransactionList";
+import { FaCar, FaUsers } from "react-icons/fa";
+import TransactionList from "../transaction/TransactionList";
 import Image from "next/image";
 import { FaNairaSign } from "react-icons/fa6";
 import TopDrivers from "./TopDriver";
