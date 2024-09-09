@@ -34,6 +34,7 @@
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
     "autoprefixer": "^10",
+    "eslint": "^9.10.0",
     "postcss": "^8",
     "tailwindcss": "^3"
   }

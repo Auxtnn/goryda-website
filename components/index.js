@@ -14,6 +14,7 @@ import Team from "./About/Team";
 import Navbar from "./Global/Navbar";
 import Login from "./Auth/Login/Login";
 import Sidebar from "./dashboard/Sidebar";
+import Forgot from "./Auth/ForgotPassword/Forgot";
 
 import Dashboard from "./dashboard/pageDashboard/Dashboard";
 import Drivers from "./dashboard/drivers/Drivers";
@@ -30,6 +31,7 @@ export {
   Users,
   TransactionPage,
   Navbar,
+  Forgot,
   Download,
   DriverSection,
   PassengerSection,
