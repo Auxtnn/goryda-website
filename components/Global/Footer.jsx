@@ -69,12 +69,15 @@ const Footer = () => {
               <p className="font-medium text-green-500">Legal</p>
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
-                  <Link href="#" className="transition hover:opacity-75">
+                  <Link href="/terms" className="transition hover:opacity-75">
                     Terms & Conditions
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="transition hover:opacity-75">
+                  <Link
+                    href="/privacy-policy"
+                    className="transition hover:opacity-75"
+                  >
                     Privacy Policy
                   </Link>
                 </li>
