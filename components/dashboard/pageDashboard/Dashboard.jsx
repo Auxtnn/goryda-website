@@ -20,16 +20,15 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch("", {
+        const response = await fetch("/api/v1/admin/dashboard-summary", {
           method: "GET",
-          headers: {
-            Authorization: ``,
-          },
         });
+        console.log("Response status:", response.status); // Check if the response status is OK (200)
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
+        console.log("Data: ", data);
 
         setTotalEarnings(data.data.totalEarnings || 0);
         setTotalRides(data.data.totalRides || 0);

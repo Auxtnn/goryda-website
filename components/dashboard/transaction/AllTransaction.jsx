@@ -23,12 +23,15 @@ const TransactionPage = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch("", {
-          method: "GET",
-          headers: {
-            Authorization: "",
-          },
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/admin/transactions`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: "",
+            },
+          }
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

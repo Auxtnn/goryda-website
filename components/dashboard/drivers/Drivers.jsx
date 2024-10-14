@@ -52,7 +52,6 @@ const dummyRides = [
     passengerEmail: "passenger2@example.com",
     rideType: "Premium",
     date: "2024-08-18",
-
     driverName: "Jane Smith",
     driverId: "DRV002",
     status: "Cancelled",

@@ -1,7 +1,6 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import Chat from "@/components/Global/Chat";
 
 const poppins = Poppins({
@@ -23,10 +22,9 @@ export default function RootLayout(props) {
       </head>
       <body className={poppins.className}>
         <Chat />
-        <AppRouterCacheProvider>
-          <Toaster position="bottom-center" />
-          {props.children}
-        </AppRouterCacheProvider>
+
+        <Toaster position="bottom-center" />
+        {props.children}
       </body>
     </html>
   );
